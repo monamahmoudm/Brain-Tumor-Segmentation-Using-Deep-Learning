@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<!-- saved from url=(0118)file:///C:/Users/sama%20amr/OneDrive/Desktop/A_ML/website-template%202/team-specific/Brain%20Tumor%20Segmentation.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Brain Tumor Segmentation</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="./Brain Tumor Segmentation_files/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+      <a class="navbar-brand" href="file:///C:/Users/sama%20amr/OneDrive/Desktop/website-template%202/home.html">Practical Machine Deep Learning</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="true" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="navbar-collapse collapse show" id="navbarResponsive" style="">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="file:///C:/Users/sama%20amr/OneDrive/Desktop/website-template%202/home.html">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="file:///C:/Users/sama%20amr/OneDrive/Desktop/website-template%202/about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="file:///C:/Users/sama%20amr/OneDrive/Desktop/website-template%202/contact.html">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h1 class="mt-5">Brain Tumor Segmentation</h1>
+        <ul class="list-unstyled">
+          <li>Sama Amr Gouda -- 900211296</li>
+          <li>Farida Madkour -- 900211360</li>
+        <li>Mona Ibrahim -- 900212749</li></ul>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-lg-12 text-left">
+        <h2 class="mt-5">Problem Statement</h2>
+		<p>Brain tumor segmentation using MRI scans to identify whether a tumor is present or not</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 text-left">
+        <h2 class="mt-5">Dataset</h2>
+
+        <p>We used the BRATS-2020 dataset. The Brain Tumor Segmentation (BraTS) 2020 dataset is a collection of multimodal Magnetic Resonance Imaging (MRI) scans used for segmenting brain tumors. The full dataset is inaccessible due to being part of competitions conducted previously; however, we were able to obtain a version that has most of the data, with a few missing data entries that we can deal with. </p>
+
+		<p>
+Data contains 369 patients in total, and each contains 155 slice with 4 channels for each slice. Overall, 158 patients are tumorous, while 211 are non-tumorous</p><p>
+    Our dataset consists of images from brain scans, as well as masked labels indicating regions of abnormal tissue. Each image has four channels. It contains 4 main files</p>
+
+<style>
+  ol li {
+    margin-bottom: 10px;
+  }
+</style>
+
+<style>
+  .indented {
+    margin-left: 20px; 
+  }
+</style>
+
+<ol>
+    <li>        
+        <u>BraTS20 Training Metadata</u>
+        <div class="indented">Contains: Slice Path, Target, Volume, Slice, and Channels</div>
+</li>
+
+<li> 
+    <u>Survival Info</u> 
+    <div class="indented">Contains: Age, Survival Days, and Extent of Resection</div>
+</li>
+
+<li>
+    <u>Name Mapping</u>
+    <div class="indented">Contains: 77 Low-Grade Gliomas (LGG ) Patients and 283 High Grade Gliomas (HGG) Patients</div>
+</li>
+
+<li>
+   <u>Meta Data</u>
+    <div class="indented">Contains: Slice Path, Target, Volume and Slice</div>
+</li>
+</ol><br> <!-- Empty Line before the image -->
+	    <div class="img-container" align="center"> <!-- Block parent element -->
+      		<img src="./Brain Tumor Segmentation_files/Data.png" class="img-fluid text-center">
+    	</div>
+
+<br>
+    	
+
+<style>
+  .image-grid1 {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns of equal width */
+    gap: 10px; /* Spacing between images */
+  }
+  .image-grid1 img {
+    width: 100%; /* Ensure images fill the grid cell */
+  }
+</style>
+
+<div class="image-grid1">
+  <img src="./Brain Tumor Segmentation_files/Brain Data.png" class="img-fluid text-center" alt="Image 1">
+  <img src="./Brain Tumor Segmentation_files/Brain Overlay.png" alt="Image 2">
+</div>
+<br> <!-- Empty Line after the image -->
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 text-left">
+        <h2 class="mt-5">Input/Output Examples</h2>
+
+        <p>The model takes 155 slices for 1 patient as its imput and outputs whether a tumor is present or not</p>
+
+<p> Here's an example of 1 slice for a randomly chosen patient and its output
+</p>
+
+		<br> <!-- Empty Line before the image -->
+	    
+
+
+
+    	<div class="image-grid1">
+  <img src="./Brain Tumor Segmentation_files/Brain for testing.png" class="img-fluid text-center" alt="Image 1">
+  <img src="./Brain Tumor Segmentation_files/Output.png" alt="Image 2">
+</div><br> <!-- Empty Line after the image -->
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-lg-12 text-left">
+        <h2 class="mt-5">State of the art</h2>
+
+        <p>We chose the TwoPathsCNN model, which is joined at various positions, as our baseline model. This type of model has a cascading architecture, which means that two inputs are to be taken from the image and then assembled after several activation functions to have the output of one model be the input of the next one</p>
+
+		<br> <!-- Empty Line before the image -->
+	    <div class="img-container" align="center"> <!-- Block parent element -->
+      		<img src="./Brain Tumor Segmentation_files/2 path results.png" class="img-fluid text-center">
+    	</div>
+    	<br> <!-- Empty Line after the image -->
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 text-left">
+        <h2 class="mt-5">Orignial Model from Literature</h2>
+
+        <p>
+			Details about the model here, add your model images below
+		</p>
+
+		<br> <!-- Empty Line before the image -->
+	    <div class="img-container" align="center"> <!-- Block parent element -->
+      		<img src="./Brain Tumor Segmentation_files/2path str2.png" class="img-fluid text-center">
+    	</div>
+    	<br> <!-- Empty Line after the image -->
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 text-left">
+        <h2 class="mt-5">Proposed Updates</h2>
+
+        <p>The Following represents our updates to the State-of-the-Art model</p>
+
+		<h5 class="mt-5">Update #1: Added an Attention Gates to the 2 path CNN</h5>
+		<p>We incorporated attention gates into the model architecture to be able to focus on the most relevant regions of the MRI images</p>
+		<br> <!-- Empty Line before the image -->
+	    <div class="img-container" align="center"> <!-- Block parent element -->
+      		<img src="./Brain Tumor Segmentation_files/2path+attention.png" class="img-fluid text-center">
+    	</div>
+    	<br> <!-- Empty Line after the image -->
+
+		<h5 class="mt-5">Update #2: Implemented a U-Net Model</h5>
+		
+		<p>We implemented a U-net model on our data, since it's well known for it's strength in medical image segmentation. However, we did a little tweek to the base model where rather than  doing a pixel-by-pixel segmentation, we adjusted it to work on an image level.</p><img src="./Brain Tumor Segmentation_files/unet-archi.jpg" class="img-fluid text-center"><h5 class="mt-5">Update #3: Implemented an Ensemble Model between both 
+ 2-path CNN and U-Net</h5><br> <p>We implemented an ensemble model that averages the output of both the 2 path CNN and U-Net</p><!-- Empty Line before the image -->
+	    <div class="img-container" align="center"> <!-- Block parent element -->
+      		
+    	</div>
+    	<br> <!-- Empty Line after the image -->
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-lg-12 text-left">
+        <h2 class="mt-5">Results</h2>
+
+        <p>The results demonstrate that both the Two-path CNN and Ensemble have performed quite well opposed to U-Net, where they were able to predict the ground truth correctly with am acceptable accuracy.</p>
+
+		<br> <!-- Empty Line before the image -->
+	    <div class="img-container" align="center"> <!-- Block parent element -->
+      		<img src="./Brain Tumor Segmentation_files/Testing results.png" class="img-fluid text-center">
+    	</div>
+
+<br>
+<p>
+    <b>Two-Path CNN Results:</b>
+ </p>
+
+
+    	<br>
+
+<style>
+  .image-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* Two columns of equal width */
+    gap: 10px; /* Spacing between images */
+  }
+  .image-grid img {
+    width: 100%; /* Ensure images fill the grid cell */
+  }
+</style>
+
+<div class="image-grid">
+  <img src="./Brain Tumor Segmentation_files/2 path loss.png" alt="Image 1">
+  <img src="./Brain Tumor Segmentation_files/2 path accuracy.png" alt="Image 2">
+    <img src="./Brain Tumor Segmentation_files/2 path recall.png" alt="Image 2">
+    <img src="./Brain Tumor Segmentation_files/2 path precision.png" alt="Image 2">
+    <img src="./Brain Tumor Segmentation_files/2 path f1.png" alt="Image 2"><img src="./Brain Tumor Segmentation_files/2 path dice.png" alt="Image 2">
+
+</div>
+ <!-- Empty Line after the image -->
+      </div>
+    </div>
+
+
+    <br>
+<p>
+    <b>U-Net Results:</b>
+ </p><div class="image-grid">
+  <img src="./Brain Tumor Segmentation_files/unet loss.png" alt="Image 1">
+  <img src="./Brain Tumor Segmentation_files/unet accuracy.png" alt="Image 2">
+    <img src="./Brain Tumor Segmentation_files/unet recall.png" alt="Image 2">
+    <img src="./Brain Tumor Segmentation_files/unet precision.png" alt="Image 2">
+    <img src="./Brain Tumor Segmentation_files/unet f1.png" alt="Image 2"><img src="./Brain Tumor Segmentation_files/unet dice.png" alt="Image 2">
+
+</div><div class="row">
+      <div class="col-lg-12 text-left">
+        <h2 class="mt-5">Technical report</h2>
+
+        <p>
+			Here you will detail the details related to training, for example:
+		</p>
+
+	 	<ul>
+		  <li>Programming framework: Jupyter Notebook</li>
+		  <li>Training hardware: VS Code</li>
+		  <li>Training time: 2 days</li>
+		  <li>Number of epochs: 10/model</li>
+		  <li>Time per epoch: around 50 minutes</li>
+		  <li>Any other important detail or difficulties: Accessability to GPU</li>
+		</ul> 
+      </div>
+    </div>
+
+	<div class="row">
+	  <div class="col-lg-12 text-left">
+	    <h2 class="mt-5">Conclusion</h2>
+
+	    <p>After careful consideration of all aforementioned points, it is irrefutable that brain tumor segmentation is a crucial task in medical imaging, with significant implications for early diagnosis and treatment planning.</p>
+
+<p>The BraTS datasets have been instrumental in advancing the field, offering multimodal MRI data that reflect real-world clinical scenarios. Many updated model innovations improved Dice scores and accuracy across different tumor regions.
+</p>
+
+<p>While significant progress has been made, challenges remain in achieving optimal segmentation for brain tumors. We worked on TwoPathCNN and U-Net baseline models to be able to achieve a more robust model to be able to generalize the model across another dataset (BraTS, 2020) and improve its metrics. We added attention gates and used mini-batch to improve the model. By addressing these challenges, our research on deep learning models can continue to enhance brain tumor segmentation, ultimately improving patient outcomes and enabling faster, more accurate medical decisions.
+</p>
+
+<p> For future work recommendations, exploring other models that might not need that much RAM memory and GPU. Furthermore, enhancing Two-Path CNN would be a good option, since that would increase its accuracy. Using other Ensemble models would also be a good trial to identify the presence of the tumor.</p>
+
+	  </div>
+	</div>
+
+	<div class="row">
+	  <div class="col-lg-12 text-left">
+	    <h2 class="mt-5">References</h2>
+
+	    
+
+		<ol>
+		  <li><a href="https://www.kaggle.com/datasets/awsaf49/brats2020-training-data/data">Awsaf. (2020). Brain Tumor Segmentation(BRATS2020). Kaggle. 
+</a></li>
+		  <li><a href="https://ieeexplore.ieee.org/document/6975210">B. H. Menze, A. Jakab, S. Bauer, J. Kalpathy-Cramer, K. Farahani, J. Kirby, et al. "The Multimodal Brain Tumor Image Segmentation Benchmark (BRATS)", IEEE Transactions on Medical Imaging 34(10), 1993-2024 (2015) DOI: 10.1109/TMI.2014.2377694</a></li>
+		  <li><a href="https://doi.org/10.1016/j.cmpb.2018.09.007">Ben naceur, M., Saouli, R., Akil, M., &amp; Kachouri, R. (2018). Fully automatic brain tumor segmentation using end-to-end incremental deep neural networks in MRI images. Computer methods and programs in biomedicine, 166, 39-49.</a></li>
+
+<li><a href="https://doi.org/10.1016/j.neucom.2019.01.111.">Chen, H., Qin, Z., Ding, Y., Tian, L., &amp; Qin, Z. (2020). Brain tumor segmentation with deep convolutional symmetric neural network. Neurocomputing, 392, 305-313. </a></li>
+
+<li><a href="https://my.clevelandclinic.org/health/diseases/6149-brain-cancer-brain-tumor">Cleveland Clinic. (2022). Brain Cancer &amp; Brain Tumor: Symptoms, Causes &amp; Treatments. Cleveland Clinic. </a></li>
+
+<li><a href="https://doi.org/10.1007/978-3-319-30858-6_17">Havaei, M., Dutil, F., Pal, C., Larochelle, H., Jodoin, PM. (2016). A Convolutional Neural Network Approach to Brain Tumor Segmentation. In: Crimi, A., Menze, B., Maier, O., Reyes, M., Handels, H. (eds) Brainlesion: Glioma, Multiple Sclerosis, Stroke and Traumatic Brain Injuries. BrainLes 2015. Lecture Notes in Computer Science(), vol 9556. Springer, Cham. </a></li>
+
+<li><a href="https://doi.org/10.1016/j.media.2016.05.004">Havaei, M., Davy, A., Warde-Farley, D., Biard, A., Courville, A., Bengio, Y., Pal, C., Jodoin, P., &amp; Larochelle, H. (2017). Brain tumor segmentation with Deep Neural Networks. Medical Image Analysis, 35, 18–31.  </a></li>
+
+    <li><a href="https://arxiv.org/pdf/1802.10508v1">Isensee, F., Kickingereder, P., Wick, W., Bendszus, M., &amp; Maier-Hein, K. H. (2018). Brain tumor segmentation and radiomics survival prediction: Contribution to the brats 2017 challenge. In Brainlesion: Glioma, Multiple Sclerosis, Stroke and Traumatic Brain Injuries: Third International Workshop, BrainLes 2017, Held in Conjunction with MICCAI 2017, Quebec City, QC, Canada, September 14, 2017, Revised Selected Papers 3 (pp. 287-297). Springer International Publishing.
+ </a></li>
+
+
+    <li><a href="https://www.researchgate.net/profile/Mona-Sharifi/publication/309456897_Brain_tumor_segmentation_with_deep_learning/links/5b444445458515f71cb8a65d/Brain-tumor-segmentation-with-deep-learning.pdf">Rao, V., Sarabi, M. S., &amp; Jaiswal, A. (2015). Brain tumor segmentation with deep learning. MICCAI multimodal brain tumor segmentation challenge (BraTS), 59, 1-4. </a></li>
+
+        <li><a href="https://www.nature.com/articles/sdata2017117">S. Bakas, H. Akbari, A. Sotiras, M. Bilello, M. Rozycki, J.S. Kirby, et al., "Advancing The Cancer Genome Atlas glioma MRI collections with expert segmentation labels and radiomic features", Nature Scientific Data, 4:170117 (2017) </a></li>
+
+
+<li><a href="https://arxiv.org/abs/1811.02629">S. Bakas, M. Reyes, A. Jakab, S. Bauer, M. Rempfler, A. Crimi, et al., "Identifying the Best Machine Learning Algorithms for Brain Tumor Segmentation, Progression Assessment, and Overall Survival Prediction in the BRATS Challenge" (2018) </a></li>
+
+    <li><a href="https://doi.org/10.1007/s10916-019-1416-0">Thaha, M.M., Kumar, K.P.M., Murugan, B.S. et al. Brain Tumor Segmentation Using Convolutional Neural Networks in MRI Images. J Med Syst 43, 294 (2019)." (2018) </a></li>
+    
+		</ol>
+
+-------------
+         
+	  </div>
+	</div>
+
+  </div>
+
+
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="./Brain Tumor Segmentation_files/jquery.slim.min.js.download"></script>
+  <script src="./Brain Tumor Segmentation_files/bootstrap.bundle.min.js.download"></script>
+
+
+
+
+</body></html>
